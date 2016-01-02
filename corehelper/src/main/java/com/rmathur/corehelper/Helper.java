@@ -1,11 +1,15 @@
 package com.rmathur.corehelper;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Vibrator;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 public class Helper {
+
+    private static final String TAG = Helper.class.getCanonicalName();
 
     public static void toastShortAndLog(Context context, String message) {
         // toast short
@@ -13,7 +17,7 @@ public class Helper {
         toast.show();
 
         // log
-        Log.e("Helper", message);
+        Log.e(TAG, message);
     }
 
     public static void toastLongAndLog(Context context, String message) {
@@ -22,11 +26,15 @@ public class Helper {
         toast.show();
 
         // log
-        Log.e("Helper", message);
+        Log.e(TAG, message);
     }
 
     public static void vibrate(Context context) {
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(500);
+    }
+
+    public static void keepScreenOn(Context context) {
+        ((Activity) context).getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 }
